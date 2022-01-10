@@ -28,7 +28,7 @@ void CountPro(uchar N)
 		return;
 	if((CountTime[N][6] < Time[6]) 
 		|| (CountTime[N][6] == Time[6] && DaysCount < DaysNow) 
-		|| (CountTime[N][6] == Time[6] && DaysCount == DaysNow && MinsCount < MinsNow))
+		|| (CountTime[N][6] == Time[6] && DaysCount == DaysNow && MinsCount <= MinsNow))
 	{
 		CountPause[N] = 1;
 		CountDown[N][0] = 0;
@@ -344,6 +344,8 @@ void KeyPro()
 					Time[4] = 12;
 				}
 				else Time[4]--;
+				if(Time[3] > MonthDay[Time[4] - 1])
+					Time[3] = MonthDay[Time[4] - 1];
 			}
 			else if(CURSOR == 0x04)
 			{
@@ -366,6 +368,9 @@ void KeyPro()
 			{
 				if(++Time[4] == 13)
 					Time[4] = 1;
+				if(Time[3] > MonthDay[Time[4] - 1])
+					Time[3] = MonthDay[Time[4] - 1];
+
 			}
 			else if(CURSOR == 0x04)
 			{
